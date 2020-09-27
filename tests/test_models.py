@@ -15,3 +15,19 @@ class TestUser(unittest.TestCase):
 
     def test_password_verification(self):
         self.assertTrue(self.new_user.verify_password('Abdi999'))
+
+class TestComment(unittest.TestCase):
+    '''test class to test behaviour of Comment Model'''
+    def setUp():
+        self.new_comment = Comment(id = 1,comment = 'Good one',user_id=1,blog_id=1)
+    def test_save_comment(self):
+        comment1 = Comment(id = 2,comment = 'Good one',user_id=1,blog_id=1)
+        comment1.save_comment()
+        self.assertEqual(comment1.id,1)
+    def test_get_comments(self):
+        comment2 = Comment(id = 3,comment = 'Good one',user_id=1,blog_id=1)
+        comment3 = Comment(id = 4,comment = 'Good one',user_id=1,blog_id=1)
+        comment2.save_comment()
+        comment3.save_comment()
+        comments = Comment.get_comments()
+        self.assertGreater(len(comments),1)
