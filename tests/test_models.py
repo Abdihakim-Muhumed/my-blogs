@@ -1,5 +1,5 @@
 import unittest
-from ..app.models import User, Blog, Comment
+from ..app.models import User, Blog, Comment, Quote
 
 class TestUser(unittest.TestCase):
     '''class to test behaviour of User Model'''
@@ -48,3 +48,12 @@ class TestBlog(unittest.TestCase):
         blog4 = Blog(blog_id = 1,title = 'The title',content='The content', user_id = 1)
         blogs = blog.get_all_blogs()
         self.assertEqual(len(blogs),1)
+class TestQuote(unittest.Test):
+    def setUp(self):
+        self.new_quote = Quote(1,'The author','The quote')
+
+    def test__init__(self):
+        quote1 = Quote(2,'The author','The quote')
+        self.assertEqual(quote1.id,2)
+        self.assertEqual(quote1.author,'The author')
+        self.assertEqual(quote1.quote, 'The quote')

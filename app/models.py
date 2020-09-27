@@ -27,6 +27,7 @@ class User(db.Model):
         return f'User {self.username}'
 
 class Blog(db.Model):
+    '''Blog model class'''
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +52,7 @@ class Blog(db.Model):
         return blog
 
 class Comment(db.Model):
+    '''Comment model class'''
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -66,3 +68,12 @@ class Comment(db.Model):
     def get_comments(cls, blog):
         comments = cls.query.filter_by(blog_id=blog).all()
         return comments
+
+class Quote():
+    '''class for Quote model'''
+    def __init__(self,id,author,quote):
+        '''Method to create Quote instance'''
+        self.id = id
+        self.author = author
+        self.quote = quote
+    
