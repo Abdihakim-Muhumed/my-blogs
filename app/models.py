@@ -49,3 +49,20 @@ class blog(db.Model):
     def get_blog(cls, id):
         blog = cls.query.filter_by(id=id).first()
         return blog
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(1500))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user = db.relationship("User", foreign_keys=user_id)
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls, blog):
+        comments = cls.query.filter_by(blog_id=blog).all()
+        return comments
