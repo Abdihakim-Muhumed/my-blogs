@@ -48,7 +48,7 @@ class TestBlog(unittest.TestCase):
         blog4 = Blog(blog_id = 1,title = 'The title',content='The content', user_id = 1)
         blogs = blog.get_all_blogs()
         self.assertEqual(len(blogs),1)
-class TestQuote(unittest.Test):
+class TestQuote(unittest.TestCase):
     def setUp(self):
         self.new_quote = Quote(1,'The author','The quote')
 
