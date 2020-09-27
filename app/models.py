@@ -25,3 +25,27 @@ class User(db.Model):
     
     def __repr__(self):
         return f'User {self.username}'
+
+class blog(db.Model):
+    __tablename__ = 'blogs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(250), nullable=False)
+    content= db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship("User", foreign_keys=user_id)
+
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_all_blogs(cls):
+        blogs = cls.query.all()
+        return blogs
+
+    @classmethod
+    def get_blog(cls, id):
+        blog = cls.query.filter_by(id=id).first()
+        return blog
