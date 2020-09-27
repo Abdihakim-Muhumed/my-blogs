@@ -31,3 +31,20 @@ class TestComment(unittest.TestCase):
         comment3.save_comment()
         comments = Comment.get_comments()
         self.assertGreater(len(comments),1)
+
+class TestBlog(unittest.TestCase):
+    '''Test class to test behaviour of blog Model'''
+    def setUp(self):
+        self.new_Blog = Blog(blog_id = 1,title = 'The title',content='The content',user_id = 1)
+    def test_save_blog(self):
+        blog1 = Blog(blog_id = 2,title = 'The title',content='The content', user_id = 1)
+        blog1.save_blog()
+        self.assertEqual(blog1.blog_id,2)
+    def test_get_blog(self):
+        blog2 = Blog(blog_id = 3,title = 'The title',content='The content', user_id = 1)
+        got_blog = blog.get_blog(3)
+        self.assertEqual(got_blog.blog_id,3)
+    def test_get_all_blogs(self):
+        blog4 = Blog(blog_id = 1,title = 'The title',content='The content', user_id = 1)
+        blogs = blog.get_all_blogs()
+        self.assertEqual(len(blogs),1)
