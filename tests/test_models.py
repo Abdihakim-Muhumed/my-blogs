@@ -1,5 +1,5 @@
 import unittest
-from app.models import User, Blog, Comment
+from ..app.models import User, Blog, Comment
 
 class TestUser(unittest.TestCase):
     '''class to test behaviour of User Model'''
