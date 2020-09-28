@@ -1,0 +1,9 @@
+{% for quote in quotes%}
+    <!--Display quote-->
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info">{{quote.quote}}</li>
+            <footer class="blockquote-footer">By : {{quote.author|capitalize}} </footer>
+        </ul>
+    </div>
+{% endfor%}

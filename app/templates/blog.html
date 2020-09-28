@@ -37,12 +37,10 @@
                     {%endif%}
                     {% if current_user == user%}
                                 {% if current_user.is_authenticated %}
-                                    <div class="container">
-                                        <div class="float-right">
-                                            <a href="{{url_for('main.update_blog',blog_id=blog.id)}}">Update Blog</a>
-                                            <a href="{{url_for('main.delete_blog',blog_id=blog.id)}}">Delete Blog</a>
-                                        </div>
-                                    </div>
+                                <div class="float-right">
+                                    <a href="{{url_for('main.update_blog',blog_id=blog.id)}}">Update Blog</a>
+                                    <a href="{{url_for('main.delete_blog',blog_id=blog.id)}}">Delete Blog</a>
+                                </div>
                                 {%endif%}
                             {% endif%}
                     

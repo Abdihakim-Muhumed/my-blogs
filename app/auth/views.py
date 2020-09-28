@@ -32,7 +32,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        mail_message("Welcome to Pitchmaster","email/welcome_user",user.email,user=user)
+        mail_message("Welcome to Bloggs","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.login'))
             
