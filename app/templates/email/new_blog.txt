@@ -1,0 +1,3 @@
+Dear {{user.username}},
+A new Blog post has been published please visit our application Bloggs to view it .
+Thanks and regards, team Bloggs

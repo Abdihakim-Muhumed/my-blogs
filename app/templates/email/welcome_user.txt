@@ -1,3 +1,3 @@
 Hello {{user.username}},
 You have just signed up for our Blogs app.Welcome aboard and hope to see you contribute much to the application.
-Regards, Team, Blogs
+Regards, Team Bloggs
