@@ -66,6 +66,16 @@ def update_blog(blog_id):
 
         return redirect(url_for('.view_blog',blog_id = blog.id))
     return render_template('update_blog.html',form=form)
+@main.route('/blog/delete/<blog_id>',methods=['GET','POST'])
+@login_required
+def delete_blog(blog_id):
+    blog = Blog.query.filter_by(id = blog_id).first()
+    user = User.query.filter_by(id=blog.user_id).first()
+    uname = user.username
+    Blog.query.filter_by(id=blog_id).delete()
+    db.session.commit()
+    return redirect(url_for('.user_blogs',uname =uname))
+
 
 @main.route('/comment/delete/<comment_id>', methods =['GET', 'POST'])
 @login_required
