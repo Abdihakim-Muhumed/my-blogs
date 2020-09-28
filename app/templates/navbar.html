@@ -1,5 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a class="navbar-brand" href="/">Blogs</a>
-
+    <a class="navbar-brand" href="/">BLOGGS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="float: right;">
+      <ul class="nav navbar-nav ml-auto mr-3 ">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.new_blog')}}"> Post a new  blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('main.user_blogs',uname=current_user.username)}}"> My Blogs</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}"> View Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('auth.logout')}}">LOG OUT</a>
+        </li>
+        
+        {% else %}
+        <li class="nav-item ">
+          <a class="nav-link" href="{{url_for('auth.login')}}">LOG IN</a>
+        </li>
+        {%endif%}
+        
+      </ul>
+    </div>
   </nav>
   

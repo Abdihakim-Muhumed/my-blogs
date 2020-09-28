@@ -1,7 +1,12 @@
 from . import db 
+from flask_login import UserMixin
+from . import login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
-
-class User(db.Model):
+from datetime import datetime
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+class User(UserMixin,db.Model):
     ''' class for user model'''
     __tablename__ = 'users'
 
@@ -35,7 +40,6 @@ class Blog(db.Model):
     content= db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship("User", foreign_keys=user_id)
-
 
     def save_blog(self):
         db.session.add(self)

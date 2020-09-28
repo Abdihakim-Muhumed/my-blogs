@@ -1,0 +1,42 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'base.html' %}
+<!-- content block -->
+{% block content %}
+<div class="container mt-5 d-flex flex-wrap justify-content-center">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <div class="card border-info " >
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ blog.title|upper}}</h5>
+                    <p class="card-text">{{ blog.content}}</p>
+                    <div class="card-footer">
+                      <h4 class="text-center">Comments:</h4>
+                      {% for comment in comments %}
+                      
+                      <ul class="list-group">
+                            <li class="list-group-item list-group-item-info">{{comment.comment|capitalize}}</li>
+                            <footer class="blockquote-footer">By : {{comment.user.username|capitalize}} </footer>
+                            {% if current_user.is_authenticated %}
+                                <div class="container">
+                                    <div class="float-right">
+                                        <a href="{{url_for('main.delete_comment',comment_id=comment.id)}}">Delete Comment</a>
+                                    </div>
+                                </div>
+                            {%endif%}
+                      </ul>            
+              
+                        {% endfor %}
+                    </div>
+                    {% if current_user.is_authenticated %}
+                        <div class="container">
+                            {{ wtf.quick_form(comment_form) }}
+                        </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock%}

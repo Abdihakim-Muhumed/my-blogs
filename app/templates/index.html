@@ -1,15 +1,30 @@
-<h1>Welcome to My-Blog</h1>
 
 {% extends 'base.html'%}
-<!DOCTYPE html> 
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    </head>
-    <body>
-        <div class="container">
-            <h1 class="m-5 text-center"><i class="fas fa-list"></i> Awesome Blog</h1>
+<!--content block-->
+{% block content%}
+<div class="container">
+    <h1 class="m-5 text-center"><i class="fas fa-list"></i> Awesome Blogs</h1>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            {% for  blog in  blogs %}
+            <div class="card border-info shadow-lg">
+                <div class="card-header text-center font-weight-bold">
+                  {{ blog.title|upper}}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ blog.content}}</h5>
+                  <footer class="blockquote-footer">By : {{ blog.user.username|capitalize}} </footer>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                      <a href="{{url_for('main.view_blog',  blog_id=blog.id)}}">See Comments</a>
+                    </div>
+                    <div class="float-left"></div>
+                </div>
+            </div>
+            {% endfor%}
         </div>
-    </body>
-</html>
+    </div>
+</div>
+{% endblock%}
