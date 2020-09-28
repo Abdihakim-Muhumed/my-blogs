@@ -17,13 +17,15 @@
                       <ul class="list-group">
                             <li class="list-group-item list-group-item-info">{{comment.comment|capitalize}}</li>
                             <footer class="blockquote-footer">By : {{comment.user.username|capitalize}} </footer>
-                            {% if current_user.is_authenticated %}
-                                <div class="container">
-                                    <div class="float-right">
-                                        <a href="{{url_for('main.delete_comment',comment_id=comment.id)}}">Delete Comment</a>
+                            {% if current_user == user%}
+                                {% if current_user.is_authenticated %}
+                                    <div class="container">
+                                        <div class="float-right">
+                                            <a href="{{url_for('main.delete_comment',comment_id=comment.id)}}">Delete Comment</a>
+                                        </div>
                                     </div>
-                                </div>
-                            {%endif%}
+                                {%endif%}
+                            {% endif%}
                       </ul>            
               
                         {% endfor %}
@@ -33,6 +35,16 @@
                             {{ wtf.quick_form(comment_form) }}
                         </div>
                     {%endif%}
+                    {% if current_user == user%}
+                                {% if current_user.is_authenticated %}
+                                    <div class="container">
+                                        <div class="float-right">
+                                            <a href="{{url_for('main.update_blog',blog_id=blog.id)}}">Update Blog</a>
+                                        </div>
+                                    </div>
+                                {%endif%}
+                            {% endif%}
+                    
                 </div>
             </div>
         </div>

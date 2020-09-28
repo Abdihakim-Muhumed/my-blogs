@@ -3,7 +3,7 @@ from . import main
 from flask_login import login_required,current_user
 from ..models import User,Blog,Comment
 from .. import db
-from .forms import BlogPostForm,CommentForm,EditProfileForm
+from .forms import BlogPostForm,CommentForm,EditProfileForm,UpdateBlogForm
 from ..email import mail_message
 
 @main.route('/')
@@ -27,8 +27,8 @@ def new_blog():
     form = BlogPostForm()
 
     if form.validate_on_submit():
-        blog_title = form. blog_title.data
-        blog_content = form. blog_content.data
+        blog_title = form.blog_title.data
+        blog_content = form.blog_content.data
         
 
         # Updated  blog instance
@@ -49,6 +49,24 @@ def new_blog():
     title = 'New blog'
     return render_template('new_blog.html',title = title,form = form)
 
+@main.route('/blog/update/<blog_id>',methods=['GET','POST'])
+@login_required
+def update_blog(blog_id):
+    blog = Blog.query.filter_by(id=blog_id).first()
+    form = UpdateBlogForm()
+
+    if form.validate_on_submit():
+        blog_title = form.blog_title.data
+        blog_content = form.blog_content.data
+
+        #update blog
+        blog.title=blog_title
+        blog.content = blog_content
+        db.session.commit()
+
+        return redirect(url_for('.view_blog',blog_id = blog.id))
+    return render_template('update_blog.html',form=form)
+
 @main.route('/comment/delete/<comment_id>', methods =['GET', 'POST'])
 @login_required
 def delete_comment(comment_id):
@@ -63,7 +81,7 @@ def delete_comment(comment_id):
 @main.route('/blog/view/<blog_id>', methods=['GET', 'POST'])
 def view_blog(blog_id):
     blog=Blog.query.filter_by(id= blog_id).first()
-    
+    user = User.query.filter_by(id=blog.user_id).first()
     comments = Comment.get_comments(blog_id)
     comment_form = CommentForm()
     if current_user.is_authenticated:
@@ -78,7 +96,7 @@ def view_blog(blog_id):
             return redirect(url_for('.view_blog', blog_id= blog_id))
         comments = Comment.get_comments(blog_id)
           
-    return render_template('blog.html',  blog= blog, comments=comments,  blog_id= blog.id, comment_form = comment_form)
+    return render_template('blog.html',  blog= blog, comments=comments,  blog_id= blog.id, comment_form = comment_form, user = user)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
