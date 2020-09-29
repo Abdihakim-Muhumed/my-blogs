@@ -27,16 +27,6 @@
         </div>
     </div>
 </div>
-{% for quote in quotes%}
-    <!--Display quote-->
-    <div class="container-fluid">
-        h1 class="m-5 text-center"><i class="fas fa-list"></i> Quote of the day</h1>
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-info">{{quote.quote}}</li>
-            <footer class="blockquote-footer" style="color: aquamarine;">By : {{quote.author|capitalize}} </footer>
-        </ul>
-    </div>
-{% endfor%}
  <!--footer -->
  {% include 'quote.html'%}
 {% endblock%}

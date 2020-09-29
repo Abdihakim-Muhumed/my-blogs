@@ -10,8 +10,7 @@ from .requests import get_quote
 def index():
     blogs = Blog.query.all()
     title = 'Home'
-    quotes = get_quote()
-    return render_template('index.html', title = title,blogs = blogs,quotes=quotes)
+    return render_template('index.html', title = title)
 
 @main.route('/user/<uname>')
 def profile(uname):
