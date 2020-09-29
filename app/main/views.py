@@ -5,7 +5,6 @@ from ..models import User,Blog,Comment
 from .. import db
 from .forms import BlogPostForm,CommentForm,EditProfileForm,UpdateBlogForm
 from ..email import mail_message
-from .requests import get_quote
 @main.route('/')
 def index():
     blogs = Blog.query.all()
@@ -133,9 +132,3 @@ def user_blogs(uname):
     
     return render_template("profile/myblog.html", user=user, blogs= blogs)
 
-
-@main.route('/quote')
-def quote( quote_id):
-    '''function that displays a  quote in  quote.html'''
-    quotes = get_quote()
-    return render_template(' quote.html', quotes=quotes)
