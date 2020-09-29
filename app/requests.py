@@ -1,5 +1,5 @@
 import urllib.request,json
-from ..models import Quote
+from .models import Quote
 
 get_quote_url=""
 def configure_request(app):
