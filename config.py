@@ -2,7 +2,6 @@ import os
 class Config :
     '''General config parent class'''
     SECRET_KEY="powerful secretkey"
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://ABDIHAKIM:12345678@localhost/myblogs'
     QUOTES_URL='http://quotes.stormconsultancy.co.uk/random.json'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
