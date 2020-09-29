@@ -9,7 +9,7 @@ from ..email import mail_message
 def index():
     blogs = Blog.query.all()
     title = 'Home'
-    return render_template('index.html', title = title)
+    return render_template('index.html', title = title, blogs=blogs)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -131,4 +131,5 @@ def user_blogs(uname):
     blogs = Blog.query.filter_by(user_id = user.id).all()
     
     return render_template("profile/myblog.html", user=user, blogs= blogs)
+
 
