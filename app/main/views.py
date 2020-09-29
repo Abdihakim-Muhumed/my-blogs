@@ -5,7 +5,7 @@ from ..models import User,Blog,Comment
 from .. import db
 from .forms import BlogPostForm,CommentForm,EditProfileForm,UpdateBlogForm
 from ..email import mail_message
-from .requests import get_quote
+from ..requests import get_quote
 @main.route('/')
 def index():
     blogs = Blog.query.all()
