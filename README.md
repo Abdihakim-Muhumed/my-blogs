@@ -4,7 +4,7 @@
 This is a a personal blogging web application where you can create and share your opinions as blog posts and other users can read and comment on them. 
 # Setup Instructions:
 
-Click this link to launch the app: 
+Click this link to launch the app: https://my-bloggs.herokuapp.com/
 # Technologies
  1.Python(flask)
  2.HTML

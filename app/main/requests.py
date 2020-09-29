@@ -30,5 +30,4 @@ def process_quote_results(quote_list):
         quote_object =  Quote(id,quote,author)
         quote_results.append( quote_object)
 
-
     return  quote_results
