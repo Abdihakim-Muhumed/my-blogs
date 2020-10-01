@@ -13,10 +13,9 @@
           </div>
           <div class="card-body">
                 <!--Displaying user bio-->
+                <p> Your bio </p>
                 {% if user.bio %}
-                <p> {{user.bio}}</p>
-                {%else%}
-                <p> You have no bio </p>
+                  <p> {{user.bio}}</p>
                 {% endif %}
           </div>
       </div>
