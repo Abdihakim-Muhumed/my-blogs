@@ -18,9 +18,6 @@ class RegistrationForm(FlaskForm):
     def validate_username(self,data_field):
         if User.query.filter_by(username = data_field.data).first():
             raise ValidationError('Username is not available', 'danger')
-    def validate_password(self,pass1=password,pass2=password_confirm):
-        if pass1 is not pass2:
-            flash('Passwords must match','danger')
     
 
 class LoginForm(FlaskForm):

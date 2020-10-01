@@ -117,12 +117,12 @@ def edit_profile(uname):
     form = EditProfileForm()
 
     if form.validate_on_submit():
-        user.bio=form.bio.data
+        user.bio = form.bio.data
+
         db.session.add(user)
         db.session.commit()
 
         return redirect(url_for('.profile',uname=user.username))
-
     return render_template('profile/edit_profile.html',form =form)
 
 @main.route('/user/<uname>/blogs')
